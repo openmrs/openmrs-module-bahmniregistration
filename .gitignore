@@ -2,7 +2,8 @@
 nbproject
 manifest.mf
 build.xml
-
+*.log
+*.iml
 .project
 .settings
 .idea/*
