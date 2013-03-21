@@ -1,4 +1,4 @@
-**/.DS_Store
+.DS_Store
 nbproject
 manifest.mf
 build.xml
@@ -9,3 +9,5 @@ build.xml
 .idea/*
 node_modules/*
 test_out
+test/output
+
