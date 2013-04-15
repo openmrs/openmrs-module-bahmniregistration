@@ -11,4 +11,5 @@ node_modules/*
 test_out
 test/output
 target
+output
 .sass-cache
