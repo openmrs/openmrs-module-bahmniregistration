@@ -66,7 +66,6 @@ angular.module('registration.photoCapture', [])
                             }
                             var destWidth = Math.floor(canvas.width / pixelRatio);
                             var destHeight = Math.floor(canvas.height / pixelRatio);
-                            console.log(destWidth +" -height - "+destHeight);
                             context.drawImage(video, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
                             confirmImageButton.prop('disabled', false);
                             confirmImageButton.focus();
