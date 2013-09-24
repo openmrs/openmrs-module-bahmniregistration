@@ -10,10 +10,11 @@ build.xml
 registration-ui/node_modules/*
 registration-ui/test_out
 registration-ui/test/output
-registration-ui/target
+*target
 registration-ui/output
 registration-ui/.sass-cache
 registration-ui/.tmp
 registration-ui/node_modules
 registration-ui/app/components
 registration-ui/dist
+omod/src/main/webapp/*
