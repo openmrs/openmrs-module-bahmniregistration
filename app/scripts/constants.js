@@ -6,7 +6,8 @@ var constants = {
 
     visitType: {
         registration: "REG",
-        returningPatient: "REVISIT"
+        returningPatient: "REVISIT",
+        emergency: "EMERGENCY"
     },
     centers: [
         {name: 'GAN'},
