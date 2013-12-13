@@ -19,3 +19,6 @@ registration-ui/app/components
 registration-ui/dist
 registration-ui/app/styles/*.css
 omod/src/main/webapp/*
+dist
+node_modules
+.sass-cache
