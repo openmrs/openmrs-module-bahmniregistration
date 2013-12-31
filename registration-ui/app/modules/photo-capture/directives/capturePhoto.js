@@ -25,11 +25,21 @@ angular.module('registration.photoCapture', [])
                                 alert("Please allow access to web camera and wait for photo capture dialog to be launched");
                                 return;
                             }
+                             var videoConstraints = {
+        "mandatory": {
+            "maxWidth": 1920,
+                "maxHeight": 1080
+        },
+        "optional": [
+            {"minWidth": 1920},
+            {"minHeight": 1080}
+        ]
+    };
                             dialogOpen = true;
                             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
                             if (navigator.getUserMedia) {
                                 navigator.getUserMedia(
-                                    {video: true, audio: false},
+                                    {video: videoConstraints, audio: false},
                                     function (localMediaStream) {
                                         video.src = $window.URL.createObjectURL(localMediaStream);
                                         activeStream = localMediaStream;
@@ -95,7 +105,7 @@ angular.module('registration.photoCapture', [])
                             confirmImageButton.focus();
                         };
 
-                        dialogElement.dialog({autoOpen: false, height: 300, width: 500, modal: true,
+                        dialogElement.dialog({autoOpen: false, height: 1200, width: 1200, modal: true,
                             close: function(){
                                 dialogOpen = false;
                                 if (activeStream) {
