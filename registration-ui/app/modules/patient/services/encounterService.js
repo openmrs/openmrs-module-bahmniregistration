@@ -23,8 +23,20 @@ angular.module('registration.patient.services')
         });
     }
 
+    var getDigitized = function(patientUuid, encounterTypeUuid) {
+        return $http.get(constants.baseOpenMRSRESTURL + "/encounter", {
+            params:{
+                patient: patientUuid,
+                encounterType: encounterTypeUuid,
+                v: "custom:(uuid)"
+            },
+            withCredentials : true
+        });
+    }
+
     return {
         create: create,
-        getActiveEncounter : getActiveEncounter
+        getActiveEncounter : getActiveEncounter,
+        getDigitized: getDigitized
     };
 }]);

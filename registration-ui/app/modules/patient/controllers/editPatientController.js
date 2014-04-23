@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('registration.patient.controllers')
-    .controller('EditPatientController', ['$scope', '$rootScope', 'patientService', 'visitService','$location', 'Preferences', '$route', 'openmrsPatientMapper', '$window', '$q','spinner', 'printer', 'appService',
-        function ($scope, $rootScope, patientService, visitService,$location, preferences, $route, patientMapper, $window, $q, spinner, printer, appService) {
+    .controller('EditPatientController', ['$scope', '$rootScope', 'patientService', 'visitService','encounterService', '$location', 'Preferences', '$route', 'openmrsPatientMapper', '$window', '$q','spinner', 'printer', 'appService',
+        function ($scope, $rootScope, patientService, visitService, encounterService, $location, preferences, $route, patientMapper, $window, $q, spinner, printer, appService) {
             var uuid;
             var editActionsConfig = [];
             var defaultActions = ["save", "print"];
@@ -37,7 +37,14 @@ angular.module('registration.patient.controllers')
                     }
                     identifyEditActions();
                 });
-                spinner.forPromise($q.all([getPatientPromise, searchActiveVisitsPromise]));
+
+                var patientDocumentEncounterTypeUuid = $rootScope.encounterConfiguration.getPatientDocumentEncounterTypeUuid();
+                var patientIsDigitized = encounterService.getDigitized(uuid, patientDocumentEncounterTypeUuid)
+                patientIsDigitized.success(function(data) {
+                    $scope.isDigitized = data.results.length > 0;
+                });
+
+                spinner.forPromise($q.all([getPatientPromise, searchActiveVisitsPromise, patientIsDigitized]));
             })();
 
             var getDefaultVisitType = function() {
