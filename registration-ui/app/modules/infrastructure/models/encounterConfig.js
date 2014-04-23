@@ -25,7 +25,16 @@ var EncounterConfig = (function() {
     getConceptUUID: function(conceptName) {
       var concept = this.conceptData[conceptName];
       return  concept !== undefined ?  concept.uuid : null;
+    },
+
+    getEncounterTypeUuid:function(encounterTypeName) {
+        return this.encounterTypes[encounterTypeName]
+    },
+
+    getPatientDocumentEncounterTypeUuid: function() {
+      return this.getEncounterTypeUuid("Patient Document");
     }
+
   }
 
   return EncounterConfig;
