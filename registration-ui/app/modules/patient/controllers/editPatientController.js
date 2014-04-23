@@ -39,12 +39,14 @@ angular.module('registration.patient.controllers')
                 });
 
                 var patientDocumentEncounterTypeUuid = $rootScope.encounterConfiguration.getPatientDocumentEncounterTypeUuid();
-                var patientIsDigitized = encounterService.getDigitized(uuid, patientDocumentEncounterTypeUuid)
-                patientIsDigitized.success(function(data) {
-                    $scope.isDigitized = data.results.length > 0;
+                var patientEncounters = encounterService.getAllForPatient(uuid)
+                patientEncounters.success(function(data) {
+                    $scope.isDigitized = data.results.filter(function(result) {
+                        return result.encounterType.uuid == patientDocumentEncounterTypeUuid;
+                    }).length > 0;
                 });
 
-                spinner.forPromise($q.all([getPatientPromise, searchActiveVisitsPromise, patientIsDigitized]));
+                spinner.forPromise($q.all([getPatientPromise, searchActiveVisitsPromise, patientEncounters]));
             })();
 
             var getDefaultVisitType = function() {

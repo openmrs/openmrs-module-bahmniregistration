@@ -4,7 +4,6 @@ angular.module('registration.patient.services')
     .factory('encounterService', ['$http', '$rootScope', function ($http, $rootScope) {
     
     var create = function (encounter) {
-
         encounter.providers = encounter.providers || [];
         if ($rootScope.currentProvider && $rootScope.currentProvider.uuid) {
             encounter.providers.push( { "uuid" : $rootScope.currentProvider.uuid } );
@@ -23,12 +22,11 @@ angular.module('registration.patient.services')
         });
     }
 
-    var getDigitized = function(patientUuid, encounterTypeUuid) {
+    var getAllForPatient = function(patientUuid) {
         return $http.get(constants.baseOpenMRSRESTURL + "/encounter", {
             params:{
                 patient: patientUuid,
-                encounterType: encounterTypeUuid,
-                v: "custom:(uuid)"
+                v: "full"
             },
             withCredentials : true
         });
@@ -37,6 +35,6 @@ angular.module('registration.patient.services')
     return {
         create: create,
         getActiveEncounter : getActiveEncounter,
-        getDigitized: getDigitized
+        getAllForPatient: getAllForPatient
     };
 }]);
