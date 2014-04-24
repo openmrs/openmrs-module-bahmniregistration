@@ -42,7 +42,7 @@ angular.module('registration.patient.controllers')
                 var patientEncounters = encounterService.getAllForPatient(uuid)
                 patientEncounters.success(function(data) {
                     $scope.isDigitized = data.results.filter(function(result) {
-                        return result.encounterType.uuid == patientDocumentEncounterTypeUuid;
+                        return result.encounterType.uuid == patientDocumentEncounterTypeUuid && result.obs.length > 0;
                     }).length > 0;
                 });
 
